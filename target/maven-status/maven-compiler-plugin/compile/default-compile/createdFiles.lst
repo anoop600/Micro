@@ -1,0 +1,4 @@
+com\mindtree\BasicApp\BasicAppApplication.class
+com\mindtree\BasicApp\ServletInitializer.class
+com\mindtree\BasicApp\controller\NewEmployee.class
+com\mindtree\BasicApp\model\Employee.class
