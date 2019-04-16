@@ -18,6 +18,7 @@ node {
     {
 	checkout scm
 	workspace = pwd() 
+	 props = readProperties  file: """deploy.properties"""
 	     sh "ls -lat"
 	   
     }
@@ -51,7 +52,7 @@ node {
     
     stage ('Deploy to Kubernetes')
     { 
-    	helmcreate ["${microserviceName}","${container_port}", "${dockerImage}"]
+	    helmcreate ["prop['deploy.microservice']","prop['deploy.port']", "${dockerImage}"]
     }
 	
 }
