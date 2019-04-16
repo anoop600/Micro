@@ -12,15 +12,15 @@ def gitUrl;
 def repoName;
 def Cusername;
 def Cemail;
+def credentials = 'docker-credentials';
 
 node {
     stage('Checkout Code')
     {
 	checkout scm
 	workspace = pwd() 
-	 props = readProperties  file: """deploy.properties"""
 	     sh "ls -lat"
-	   
+	props = readProperties  file: """deploy.properties"""   
     }
     
     stage ('Static Code Analysis')
@@ -30,35 +30,31 @@ node {
     
      stage ('Build and Unit Test Execution')
     {
+          testexec
     }
     
      stage ('Code Coverage')
     { 
+        codecoveragexec
     }
     
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
-	    dockerImage = dockerexec "${props['deploy.microservice']}"
+             dockerImage = dockerexec "props['deploy.microservice']"
     }
     
      stage ('Push Image to Docker Registry')
     { 
-	    /* withCredtial'https://registry.hub.docker.com','docker-cred') {
+	     docker.withRegistry('https://registry.hub.docker.com',credentials) {
              dockerImage.push("${BUILD_NUMBER}")
              dockerImage.push("latest")
-	     }*/
-	    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-cred',
-        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-      sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
-      dockerImage.push("${BUILD_NUMBER}")
-             dockerImage.push("latest")
-    }
+	     }
     }
     
     stage ('Deploy to Kubernetes')
     { 
-	    helmcreate ["${props['deploy.microservice']}","${props['deploy.port']}", "${dockerImage}"]
+    	helmcreate ["props['deploy.microservice']","props['deploy.port']", "${dockerImage}"]
     }
 	
 }
