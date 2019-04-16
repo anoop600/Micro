@@ -39,7 +39,7 @@ node {
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
-             dockerImage = dockerexec "/var/lib/jenkins/workspace/DockerDemo/"
+             dockerImage = dockerexec "props['deploy.microservice']"
     }
     
      stage ('Push Image to Docker Registry')
