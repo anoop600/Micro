@@ -51,7 +51,8 @@ node {
 	    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-cred',
         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
       sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
-      dockerImage.push()
+      dockerImage.push("${BUILD_NUMBER}")
+             dockerImage.push("latest")
     }
     }
     
