@@ -2,7 +2,7 @@
 
 def workspace;
 def branch;
-
+def appDeployProcess;
 def dockerImage;
 def configserveruri='';
 def props='';
