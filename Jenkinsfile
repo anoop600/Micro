@@ -44,10 +44,15 @@ node {
     
      stage ('Push Image to Docker Registry')
     { 
-	     docker.withRegistry('https://registry.hub.docker.com','docker-cred') {
+	    /* withCredtial'https://registry.hub.docker.com','docker-cred') {
              dockerImage.push("${BUILD_NUMBER}")
              dockerImage.push("latest")
-	     }
+	     }*/
+	    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-cred',
+        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
+      dockerImage.push()
+    }
     }
     
     stage ('Deploy to Kubernetes')
