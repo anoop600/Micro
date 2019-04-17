@@ -35,13 +35,13 @@ node {
     
      stage ('Code Coverage')
     { 
-       codecoveragexec
+        codecoveragexec
     }
     
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
-	    dockerImage = dockerexec "${props['deploy.microservice']}"
+             dockerImage = dockerexec "${props['deploy.microservice']}"
     }
     
      stage ('Push Image to Docker Registry')
@@ -52,10 +52,10 @@ node {
 	     }
     }
     
-    /*stage ('Deploy to Kubernetes')
+    stage ('Deploy to Kubernetes')
     { 
-	    helmcreate "${props['deploy.microservice']}"
-    }*/
+    	helmcreate ["${props['deploy.microservice']}","${props['deploy.port']}", "${dockerImage}"]
+    }
 	
 }
 		
