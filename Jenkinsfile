@@ -23,7 +23,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    /*stage ('Static Code Analysis')
+    stage ('Static Code Analysis')
     { 
 	    sonarexec "sonar analysis.."
     }
@@ -36,12 +36,13 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "code coverage execution.."
-    }*/
+    }
     
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
              dockerImage = dockerexec "${props['deploy.microservice']}"
+	     echo "${dockerImage}"
     }
     
      stage ('Push Image to Docker Registry')
