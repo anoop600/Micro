@@ -54,8 +54,10 @@ node {
     
     stage ('Config helm')
     { 
-    	sh "echo 'Almost there'"
     	helmcreate "${dockerImage}"
+	sh """
+	mv helmchart ${props['deploy.microserviceName']}
+	"""
     }
 	
 }
