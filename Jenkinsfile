@@ -4,7 +4,6 @@ def workspace;
 def branch;
 def appDeployProcess;
 def dockerImage;
-def dockerImage1;
 def configserveruri='';
 def props='';
 def microserviceName;
@@ -13,7 +12,7 @@ def gitUrl;
 def repoName;
 def Cusername;
 def Cemail;
-def credentials = 'docker-credentials';
+def credentials = 'cred-docker';
 
 node {
     stage('Checkout Code')
@@ -24,7 +23,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    /*stage ('Static Code Analysis')
+    stage ('Static Code Analysis')
     { 
 	    sonarexec "sonar analysis.."
     }
@@ -37,13 +36,12 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "code coverage execution.."
-    }*/
+    }
     
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
              dockerImage = dockerexec "${props['deploy.microservice']}"
-	     echo "${dockerImage}"
     }
     
      stage ('Push Image to Docker Registry')
@@ -57,7 +55,7 @@ node {
     stage ('Config helm')
     { 
     	sh "echo 'Almost there'"
-    	helmcreate "${props['deploy.microservice']}"
+    	//helmcreate ["${props['deploy.microservice']}", "${dockerImage}"]
     }
 	
 }
