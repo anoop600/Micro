@@ -54,7 +54,7 @@ node {
     
     stage ('Deploy to Kubernetes')
     { 
-    	helmcreate "${props['deploy.microservice']}","${props['deploy.port']}", "${dockerImage}"
+    	helmcreate "${dockerImage}"
     }
 	
 }
