@@ -23,20 +23,20 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    stage ('Static Code Analysis')
+     /*stage ('Static Code Analysis')
     { 
-	    sonarexec
+	    sonarexec "sonar analysis.."
     }
     
      stage ('Build and Unit Test Execution')
     {
-          testexec "Build and Unit Test Execution...................."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-        codecoveragexec
-    }
+        codecoveragexec "code coverage execution.."
+    }*/
     
      stage ('Create Docker Image')
     { 
