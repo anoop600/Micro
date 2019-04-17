@@ -54,7 +54,7 @@ node {
     
     stage ('Deploy to Kubernetes')
     { 
-    	helmcreate "${props['deploy']}"
+    	helmcreate "${dockerImage}"
     }
 	
 }
