@@ -52,10 +52,10 @@ node {
 	     }
     }
     
-    stage ('Deploy to Kubernetes')
+    /*stage ('Deploy to Kubernetes')
     { 
 	    helmcreate "${props['deploy.microservice']}"
-    }
+    }*/
 	
 }
 		
