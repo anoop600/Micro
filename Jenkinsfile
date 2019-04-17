@@ -12,7 +12,7 @@ def gitUrl;
 def repoName;
 def Cusername;
 def Cemail;
-def credentials = 'cred-docker';
+def credentials = 'docker-credentials';
 
 node {
     stage('Checkout Code')
@@ -23,7 +23,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    stage ('Static Code Analysis')
+    /*stage ('Static Code Analysis')
     { 
 	    sonarexec "sonar analysis.."
     }
@@ -36,7 +36,7 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "code coverage execution.."
-    }
+    }*/
     
      stage ('Create Docker Image')
     { 
