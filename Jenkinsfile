@@ -4,6 +4,7 @@ def workspace;
 def branch;
 def appDeployProcess;
 def dockerImage;
+def dockerImage1;
 def configserveruri='';
 def props='';
 def microserviceName;
@@ -23,7 +24,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    stage ('Static Code Analysis')
+    /*stage ('Static Code Analysis')
     { 
 	    sonarexec "sonar analysis.."
     }
@@ -36,7 +37,7 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "code coverage execution.."
-    }
+    }*/
     
      stage ('Create Docker Image')
     { 
@@ -56,8 +57,7 @@ node {
     stage ('Config helm')
     { 
     	sh "echo 'Almost there'"
-    	helmcreate "${dockerImage}"
-	mv helmchart/ ${props['deploy.microservice']}
+    	helmcreate "${props['deploy.microservice']}"
     }
 	
 }
