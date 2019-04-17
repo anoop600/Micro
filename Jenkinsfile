@@ -56,6 +56,9 @@ node {
     { 
     	sh "echo 'Almost there'"
     	helmcreate "${dockerImage}"
+	sh """
+	mv helmchart ${props['deploy.microservice']}
+	"""
     }
 	
 }
