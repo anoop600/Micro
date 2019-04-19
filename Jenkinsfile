@@ -23,7 +23,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    /*stage ('Static Code Analysis')
+    stage ('Static Code Analysis')
     { 
 	    sonarexec "sonar analysis.."
     }
@@ -36,7 +36,11 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "code coverage execution.."
-    }*/
+    }
+    stage ('create war')
+    {
+    	mavenbuildexec "mvn build"
+    }
     
      stage ('Create Docker Image')
     { 
