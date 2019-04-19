@@ -1,17 +1,5 @@
 @Library('my_shared_library')_
 
-def workspace;
-def branch;
-def appDeployProcess;
-def dockerImage;
-def configserveruri='';
-def props='';
-def microserviceName;
-def port;
-def gitUrl;
-def repoName;
-def Cusername;
-def Cemail;
 def credentials = 'docker-credentials';
 
 node {
