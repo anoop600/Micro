@@ -25,17 +25,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	  //  sonarexec "sonar analysis.."
+	    //sonarexec "sonar analysis.."
     }
     
      stage ('Build and Unit Test Execution')
     {
-          //testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-        //codecoveragexec "code coverage execution.."
+        codecoveragexec "code coverage execution.."
     }
     stage ('create war')
     {
