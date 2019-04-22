@@ -25,17 +25,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	 //   sonarexec "sonar analysis.."
+	    sonarexec "sonar analysis.."
     }
     
      stage ('Build and Unit Test Execution')
     {
-        //  testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-       // codecoveragexec "code coverage execution.."
+        codecoveragexec "code coverage execution.."
     }
     stage ('create war')
     {
@@ -60,9 +60,9 @@ node {
     { 
     	sh "echo 'Almost there'"
     	//helmcreate ["${props['deploy.microservice']}", "${dockerImage}"]
-	    def buildNo = ${BUILD_NUMBER}
-	sed -i "s/stable/$buildNo" helmchart/values.yaml
-	sed -i "s/80/${props['deploy.port']}" helmchart/templates/deployment.yaml
+	
+	sh "sed -i "s/stable/${BUILD_NUMBER}" helmchart/values.yaml"
+	sh "sed -i "s/80/${props['deploy.port']}" helmchart/templates/deployment.yaml"
     }
 	
 }
