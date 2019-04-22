@@ -60,8 +60,8 @@ node {
     { 
     	sh "echo 'Almost there'"
     	//helmcreate ["${props['deploy.microservice']}", "${dockerImage}"]
-	
-	sed -i "s/stable/${BUILD_NUMBER}" helmchart/values.yaml
+	    def buildNo = ${BUILD_NUMBER}
+	sed -i "s/stable/$buildNo" helmchart/values.yaml
 	sed -i "s/80/${props['deploy.port']}" helmchart/templates/deployment.yaml
     }
 	
