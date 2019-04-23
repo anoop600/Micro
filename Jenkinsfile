@@ -39,7 +39,7 @@ node {
     }
     stage ('create war')
     {
-    	mavenbuildexec "mvn build"
+    	//mavenbuildexec "mvn build"
     }
     
      stage ('Create Docker Image')
