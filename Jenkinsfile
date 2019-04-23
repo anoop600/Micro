@@ -59,10 +59,12 @@ node {
     stage ('Config helm')
     { 
     	sh "echo 'Almost there'"
+	    def arg1=${props['deploy.microservice']}
+	    def arg2=${props['deploy.port']}
 	sh"""
-	sed -i "s/nginx/${props['deploy.microservice']/g" helmchart/values.yaml
+	sed -i "s/nginx/${arg1}/g" helmchart/values.yaml
 	sed -i 's/stable/${BUILD_NUMBER}/g' helmchart/values.yaml
-	sed -i 's/80/${props['deploy.port']}/g' helmchart/templates/deployment.yaml
+	sed -i 's/80/${arg2}/g' helmchart/templates/deployment.yaml
 	"""
     }
 	
