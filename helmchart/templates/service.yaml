@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "hello.fullname" . }}
+  name: {{ include "world.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "hello.name" . }}
-    helm.sh/chart: {{ include "hello.chart" . }}
+    app.kubernetes.io/name: {{ include "world.name" . }}
+    helm.sh/chart: {{ include "world.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "hello.name" . }}
+    app.kubernetes.io/name: {{ include "world.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
