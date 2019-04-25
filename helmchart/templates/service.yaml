@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "micro.fullname" . }}
+  name: {{ include "microworld.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "micro.name" . }}
-    helm.sh/chart: {{ include "micro.chart" . }}
+    app.kubernetes.io/name: {{ include "microworld.name" . }}
+    helm.sh/chart: {{ include "microworld.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "micro.name" . }}
+    app.kubernetes.io/name: {{ include "microworld.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
