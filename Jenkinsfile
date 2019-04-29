@@ -8,6 +8,7 @@ def microserviceName;
 def port;
 def gitUrl;
 def repoName;
+def docImg;
 def credentials = 'docker-credentials';
 
 node {
@@ -41,7 +42,7 @@ node {
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
-	     def docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
+	     docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
              dockerImage = dockerexec "${docImg}"
     }
     
