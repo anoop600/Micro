@@ -6,9 +6,9 @@ def dockerImage;
 def props='';
 def microserviceName;
 def port;
+def docImg;
 def gitUrl;
 def repoName;
-def docImg;
 def credentials = 'docker-credentials';
 
 node {
@@ -22,17 +22,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	    //sonarexec "${props['deploy.sonarqubeserver']}"
+	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
     
      stage ('Build and Unit Test Execution')
     {
-          //testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-        //codecoveragexec "${props['deploy.sonarqubeserver']}"
+        codecoveragexec "${props['deploy.sonarqubeserver']}"
     }
     stage ('create war')
     {
@@ -42,36 +42,40 @@ node {
      stage ('Create Docker Image')
     { 
 	     echo 'creating an image'
-	     docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
+	     def docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
              dockerImage = dockerexec "${docImg}"
     }
     
      stage ('Push Image to Docker Registry')
     { 
-	     //docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
-             //dockerImage.push("${BUILD_NUMBER}")
-	    // }
+	     docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
+             dockerImage.push("${BUILD_NUMBER}")
+	     }
     }
     
     stage ('Config helm')
     { 
-    
-    	/*sh "echo 'Almost there'"
-	sh "echo '${dockerImage}'"
-	sh"""
-	sed -i 's/nginx/${props['deploy.microservice']}/g' helmchart/values.yaml
-	sed -i 's/stable/${BUILD_NUMBER}/g' helmchart/values.yaml
-	sed -i 's/80/${props['deploy.port']}/g' helmchart/templates/deployment.yaml
-	"""*/
+    	
 	def filename = 'helmchart/values.yaml'
 	def data = readYaml file: filename
 	
-	data.image.repository = """${docImg}"""
+	data.image.repository = "${docImg}"
 	data.image.tag = "$BUILD_NUMBER"
 	data.service.port = "${props['deploy.port']}"
+	
 	sh "rm -f helmchart/values.yaml"
 	writeYaml file: filename, data: data
 	
+	
+	
+	
+	def chart = 'helmchart/Chart.yaml'
+	def chartData = readYaml file: chart
+	
+	data.name = "${props['deploy.microservice']}"
+	
+	sh"rm -f helmchart/Chart.yaml"
+	writeYaml file: chart, data: chartData
 	
 	
     }
