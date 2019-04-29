@@ -11,7 +11,8 @@
 	
 	<groupId>com.mindtree</groupId>
 	<artifactId>BasicApp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>SNAPSHOT-0.0.${v}</version>
+	<!--version>0.0.1-SNAPSHOT</version-->
 	<packaging>war</packaging>
 	<name>BasicApp</name>
 	<description>Demo project for Spring Boot</description>
