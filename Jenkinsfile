@@ -72,13 +72,13 @@ node {
 	sh "rm -f helmchart/values.yaml"
 	writeYaml file: filename, data: data
 	
-	def templateDeployment = 'helmchart/templates/deployment.yaml'
+	/*def templateDeployment = 'helmchart/templates/deployment.yaml'
 	def deployData = readYaml file: templateDeployment
 	
 	deployData.spec.containers.ports.containerPort = "{{  .Values.service.port }}"
 	
 	sh "rm -f helmchart/templates/deployment.yaml"
-	writeYaml file: templateDeployment, data: deployData
+	writeYaml file: templateDeployment, data: deployData*/
 	
 	
     }
