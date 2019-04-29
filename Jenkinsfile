@@ -19,7 +19,7 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-   /* stage ('Static Code Analysis')
+    stage ('Static Code Analysis')
     { 
 	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
@@ -32,7 +32,7 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "${props['deploy.sonarqubeserver']}"
-    }*/
+    }
     stage ('create war')
     {
     	mavenbuildexec "mvn build"
@@ -47,13 +47,15 @@ node {
     
      stage ('Push Image to Docker Registry')
     { 
-	     docker.withRegistry('https://registry.hub.docker.com',credentials) {
+	     docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
              dockerImage.push("${BUILD_NUMBER}")
 	     }
     }
     
     stage ('Config helm')
     { 
+    
+    	sh "mv helmchart/ ${props['deploy.microservice']} "
     	/*sh "echo 'Almost there'"
 	sh "echo '${dockerImage}'"
 	sh"""
@@ -66,7 +68,7 @@ node {
 	
 	data.image.repository = "${dockerImage}"
 	data.image.tag = "$BUILD_NUMBER"
-	data.port = "${props['deploy.port']}"
+	data.service.port = "${props['deploy.port']}"
 	sh "rm -f helmchart/values.yaml"
 	writeYaml file: filename, data: data
 	
