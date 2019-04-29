@@ -63,21 +63,21 @@ node {
 	sed -i 's/stable/${BUILD_NUMBER}/g' helmchart/values.yaml
 	sed -i 's/80/${props['deploy.port']}/g' helmchart/templates/deployment.yaml
 	"""*/
-	def filename = 'helmchart/values.yaml'
+	def filename = "${props['deploy.microservice']}/values.yaml"
 	def data = readYaml file: filename
 	
 	data.image.repository = "${dockerImage}"
 	data.image.tag = "$BUILD_NUMBER"
 	data.service.port = "${props['deploy.port']}"
-	sh "rm -f helmchart/values.yaml"
+	sh "rm -f ${props['deploy.microservice']}/values.yaml"
 	writeYaml file: filename, data: data
 	
-	def templateDeployment = 'helmchart/templates/deployment.yaml'
+	def templateDeployment = "${props['deploy.microservice']}/templates/deployment.yaml"
 	def deployData = readYaml file: templateDeployment
 	
 	deployData.spec.containers.ports.containerPort = "{{  .Values.service.port }}"
 	
-	sh "rm -f helmchart/templates/deployment.yaml"
+	sh "rm -f ${props['deploy.microservice']}/templates/deployment.yaml"
 	writeYaml file: templateDeployment, data: deployData
 	
 	
