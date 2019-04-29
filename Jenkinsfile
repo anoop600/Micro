@@ -21,17 +21,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	  //  sonarexec "${props['deploy.sonarqubeserver']}"
+	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
     
      stage ('Build and Unit Test Execution')
     {
-         // testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-       // codecoveragexec "${props['deploy.sonarqubeserver']}"
+        codecoveragexec "${props['deploy.sonarqubeserver']}"
     }
     stage ('create war')
     {
@@ -47,15 +47,15 @@ node {
     
      stage ('Push Image to Docker Registry')
     { 
-	 //    docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
-         //    dockerImage.push("${BUILD_NUMBER}")
-	 //    }
+	     docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
+             dockerImage.push("${BUILD_NUMBER}")
+	     }
     }
     
     stage ('Config helm')
     { 
     
-    	// sh "mv helmchart/ ${props['deploy.microservice']} "
+    	sh "mv helmchart/ ${props['deploy.microservice']} "
     	/*sh "echo 'Almost there'"
 	sh "echo '${dockerImage}'"
 	sh"""
@@ -72,13 +72,13 @@ node {
 	sh "rm -f helmchart/values.yaml"
 	writeYaml file: filename, data: data
 	
-	/*def templateDeployment = 'helmchart/templates/deployment.yaml'
+	def templateDeployment = 'helmchart/templates/deployment.yaml'
 	def deployData = readYaml file: templateDeployment
 	
 	deployData.spec.containers.ports.containerPort = "{{  .Values.service.port }}"
 	
 	sh "rm -f helmchart/templates/deployment.yaml"
-	writeYaml file: templateDeployment, data: deployData*/
+	writeYaml file: templateDeployment, data: deployData
 	
 	
     }
