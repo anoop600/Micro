@@ -49,7 +49,7 @@ node {
     { 
 	    // docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
             // dockerImage.push("${BUILD_NUMBER}")
-	     }
+	    // }
     }
     
     stage ('Config helm')
