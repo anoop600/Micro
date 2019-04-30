@@ -69,7 +69,7 @@ node {
     }
     stage ('deploy to cluster')
     {
-    	helmdeploy
+    	helmdeploy "zzz"
     }
 	
 }
