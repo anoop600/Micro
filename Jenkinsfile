@@ -20,9 +20,9 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    /*stage ('Static Code Analysis')
+    stage ('Static Code Analysis')
     { 
-	  sonarexec "${props['deploy.sonarqubeserver']}"
+	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
     
      stage ('Build and Unit Test Execution')
@@ -33,7 +33,7 @@ node {
      stage ('Code Coverage')
     { 
         codecoveragexec "${props['deploy.sonarqubeserver']}"
-    }*/
+    }
     stage ('create war')
     {
     	mavenbuildexec "mvn build"
@@ -48,9 +48,9 @@ node {
     
      stage ('Push Image to Docker Registry')
     { 
-	     docker.withRegistry('https://registry.hub.docker.com','docker-credentials') {
-             dockerImage.push("${BUILD_NUMBER}")
-	     }
+	  //   docker.withRegistry('https://registry.hub.docker.com',docker-credentials) {
+          //   dockerImage.push("${BUILD_NUMBER}")
+	  //   }
     }
     
     stage ('Config helm')
