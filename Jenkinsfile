@@ -43,7 +43,7 @@ node {
     { 
 	     echo 'creating an image'
 	     docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
-             dockerImage = dockerexec "${docImg}"
+             //dockerImage = dockerexec "${docImg}"
     }
     
      stage ('Push Image to Docker Registry')
