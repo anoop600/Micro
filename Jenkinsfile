@@ -22,17 +22,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	  //  sonarexec "${props['deploy.sonarqubeserver']}"
+	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
     
      stage ('Build and Unit Test Execution')
     {
-         // testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-       // codecoveragexec "${props['deploy.sonarqubeserver']}"
+        codecoveragexec "${props['deploy.sonarqubeserver']}"
     }
     stage ('create war')
     {
@@ -43,7 +43,7 @@ node {
     { 
 	     echo 'creating an image'
 	     docImg="${props['deploy.dockerhub']}/${props['deploy.microservice']}"
-             //dockerImage = dockerexec "${docImg}"
+             dockerImage = dockerexec "${docImg}"
     }
     
      stage ('Push Image to Docker Registry')
@@ -67,10 +67,10 @@ node {
 	writeYaml file: filename, data: data
 	
     }
-    stage ('deploy to cluster')
+    /*stage ('deploy to cluster')
     {
-    	helmdeploy "zzz"
-    }
+    	helmdeploy "${props['deploy.microservice']}"
+    }*/
 	
 }
 		
