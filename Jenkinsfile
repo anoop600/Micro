@@ -1,4 +1,6 @@
 @Library('my_shared_library')_
+
+def workspace;
 def branch;
 def dockerImage;
 def props='';
@@ -20,17 +22,17 @@ node {
     
     stage ('Static Code Analysis')
     { 
-	    //sonarexec "${props['deploy.sonarqubeserver']}"
+	    sonarexec "${props['deploy.sonarqubeserver']}"
     }
     
      stage ('Build and Unit Test Execution')
     {
-          //testexec "junit testing.."
+          testexec "junit testing.."
     }
     
      stage ('Code Coverage')
     { 
-        //codecoveragexec "${props['deploy.sonarqubeserver']}"
+        codecoveragexec "${props['deploy.sonarqubeserver']}"
     }
     stage ('create war')
     {
