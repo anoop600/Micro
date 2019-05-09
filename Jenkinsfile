@@ -1,6 +1,4 @@
 @Library('my_shared_library')_
-
-def workspace;
 def branch;
 def dockerImage;
 def props='';
