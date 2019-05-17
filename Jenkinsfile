@@ -7,7 +7,6 @@ def props='';
 def microserviceName;
 def port;
 def docImg;
-def gitUrl;
 def repoName;
 def credentials = 'docker-credentials';
 
@@ -20,13 +19,22 @@ node {
 	props = readProperties  file: """deploy.properties"""   
     }
     
-    stage (Check-secrets){
+    stage ('Check-secrets'){
     	sh """
-	rm trufflehog || true
-	docker run gesellix/trufflehog --json ${props['gitURL']} > trufflehog
+	rm trufflehog | true
+	docker run gesellix/trufflehog --json ${props['deploy.gitURL']} > trufflehog
 	cat trufflehog	
 	"""
     }
+
+    stage ('Source Composition Analysis') {
+         sh 'rm owasp* || true'
+         sh 'wget "https://raw.githubusercontent.com/soul-reaper48/JavaSpringMvcBlog/master/owasp-dependency-check.sh" '
+         sh 'chmod +x owasp-dependency-check.sh'
+         sh 'bash owasp-dependency-check.sh'
+         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+    }	
+	
     stage ('create war')
     {
     	mavenbuildexec "mvn build"
@@ -36,7 +44,7 @@ node {
     
     }
         
-    Stage ('DAST'){
+    stage ('DAST'){
     
     }
 	
