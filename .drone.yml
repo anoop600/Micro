@@ -3,7 +3,7 @@ name: default
 pipeline:
   artifactory:
     image: athieriot/drone-artifactory
-    url: http://54.169.222.113:8081/artifactory/webapp/#/artifacts/browse/tree/General/example-repo-local
+    url: http://54.169.222.113:8081
     username: admin_name
     password: admin_password
     files:
