@@ -6,6 +6,7 @@ pipeline:
     url: http://3.0.177.36:8081
     username: admin_name
     password: password_password
+-   pom: pom.xml
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
     
