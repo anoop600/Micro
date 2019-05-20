@@ -10,5 +10,5 @@ pipeline:
 +   group_id: com.mindtree 
 +   artifact_id: BasicApp
 +   version: SNAPSHOT-0.0.1
-    file:
+    files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
