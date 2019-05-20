@@ -1,16 +1,11 @@
 kind: pipeline
 name: default
-steps:
-- name: test
-  image: maven:3-jdk-10
-  commands:
-  - mvn clean install
 pipeline:
   artifactory:
     image: athieriot/drone-artifactory
-    url: http://arti.company.com
+    url: http://3.0.177.36:8081
     username: admin_name
     password: password_password
     files:
-      - target/*.war
+      - target/BasicApp-0.0.1-SNAPSHOT.war
     
