@@ -12,3 +12,4 @@ pipeline:
 +   version: SNAPSHOT-0.0.1
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
++   force_upload: true      
