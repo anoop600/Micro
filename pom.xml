@@ -11,7 +11,7 @@
 	
 	<groupId>com.mindtree</groupId>
 	<artifactId>BasicApp</artifactId>
-	<version>SNAPSHOT-0.0.${v}</version>
+	<version>SNAPSHOT-0.0.1</version>
 	<!--version>0.0.1-SNAPSHOT</version-->
 	<packaging>war</packaging>
 	<name>BasicApp</name>
