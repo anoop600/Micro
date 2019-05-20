@@ -6,6 +6,9 @@ pipeline:
     url: http://3.0.177.36:8081
     username: admin_name
     password: admin_password
-    pom: pom.xml
+-   pom: pom.xml
++   group_id: com.company 
++   artifact_id: awesome-lib
++   version: 1.0-SNAPSHOT
     file:
       - target/BasicApp-0.0.1-SNAPSHOT.war
