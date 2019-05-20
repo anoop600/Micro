@@ -7,5 +7,5 @@ pipeline:
     username: admin_name
     password: admin_password
     pom: pom.xml
-    files:
+    file:
       - target/BasicApp-0.0.1-SNAPSHOT.war
