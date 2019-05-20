@@ -6,6 +6,4 @@ pipeline:
     url: http://arti.company.com
     username: admin_name
     password: password_password
-    pom: pom.xml
-    files:
-      - target/*.war
+    
