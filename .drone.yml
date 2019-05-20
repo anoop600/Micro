@@ -8,7 +8,6 @@ pipeline:
     password: admin_password
     pom: pom.xml
     files:
-      - target/*.jar
-      - target/.war
+      - target/BasicApp-0.0.1-SNAPSHOT.war
 
       
