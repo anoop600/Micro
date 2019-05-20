@@ -1,10 +1,11 @@
 kind: pipeline
 name: default
-steps:
-- name: code-analysis
-  image: aosapps/drone-sonar-plugin
-  settings:
-    sonar_host:
-      from_secret: sonar_host
-    sonar_token:
-      from_secret: sonar_token
+pipeline:
+  artifactory:
+    image: athieriot/drone-artifactory
+    url: http://arti.company.com
+    username: admin
+    password: password
+    pom: pom.xml
+    files:
+      - target/*.war
