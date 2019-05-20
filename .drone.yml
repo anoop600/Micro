@@ -7,9 +7,6 @@ pipeline:
     username: admin_name
     password: admin_password
 -   pom: pom.xml
-+   group_id: com.mindtree 
-+   artifact_id: BasicApp
-+   version: SNAPSHOT-0.0.1
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
-+   force_upload: true      
+      
