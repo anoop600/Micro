@@ -7,8 +7,8 @@ pipeline:
     username: admin_name
     password: admin_password
 -   pom: pom.xml
-+   group_id: com.company 
-+   artifact_id: awesome-lib
-+   version: 1.0-SNAPSHOT
++   group_id: com.mindtree 
++   artifact_id: BasicApp
++   version: SNAPSHOT-0.0.1
     file:
       - target/BasicApp-0.0.1-SNAPSHOT.war
