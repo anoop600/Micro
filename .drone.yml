@@ -4,8 +4,8 @@ pipeline:
   artifactory:
     image: athieriot/drone-artifactory
     url: http://arti.company.com
-    username: admin
-    password: password
+    username: admin_name
+    password: password_password
     pom: pom.xml
     files:
       - target/*.war
