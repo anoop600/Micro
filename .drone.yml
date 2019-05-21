@@ -1,5 +1,3 @@
-kind: pipeline
-name: default
 pipeline:
   deploy_war:
     image: athieriot/drone-artifactory:latest
@@ -10,4 +8,5 @@ pipeline:
     repo_key: Hello
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
-    force_upload: true
+    when:
+      branch: master
