@@ -2,7 +2,8 @@ kind: pipeline
 name: default
 pipeline:
   artifactory:
-    image: athieriot/drone-artifactory
+    image: scandio/jfrog-artifactory
+
 
   
     
