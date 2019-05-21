@@ -3,7 +3,7 @@ name: default
 pipeline:
   artifactory:
     image: emeraldsquad/artifactory-resource
-    url: http://54.169.222.113:8081/artifactory/webapp/#/artifacts/browse/tree/General/Hello
+    url: http://54.169.222.113:8081
     username: admin
     password: password
     pom: pom.xml
