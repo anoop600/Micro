@@ -2,7 +2,7 @@ kind: pipeline
 name: default
 pipeline:
   artifactory:
-    image: jmccann/drone-artifactory
+    image: emeraldsquad/artifactory-resource
 
 
 
