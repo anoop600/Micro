@@ -3,11 +3,11 @@ name: default
 pipeline:
   artifactory:
     image: emeraldsquad/artifactory-resource
-    url: http://54.169.222.113:8081/artifactory/Hello/
+    url: http://54.169.222.113:8081/
     username: admin
     password: password
     pom: pom.xml
-    repo_key: Hello
+    repo_key: Hello/
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
     force_upload: true
