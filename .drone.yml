@@ -1,10 +1,9 @@
-pipeline:
-  artifactory:
-    image: athieriot/drone-artifactory
-    url: http://54.169.222.113:8081
-    username: admin
-    password: password
-    repo_key: Hello
-    files:
-      - target/BasicApp-0.0.1-SNAPSHOT.war
+kind: pipeline
+name: default
+steps:
+- name: artifactory
+  image: athieriot/drone-artifactory
+  
+    
+    
       
