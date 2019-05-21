@@ -9,6 +9,7 @@ pipeline:
     pom: pom.xml
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
+      
 
 
 
