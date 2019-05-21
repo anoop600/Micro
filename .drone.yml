@@ -3,7 +3,7 @@ name: default
 pipeline:
   artifactory:
     image: emeraldsquad/artifactory-resource
-
+    url: 54.169.222.113:8081
 
 
 
