@@ -1,12 +1,14 @@
 pipeline:
+  build_war:
+    image: maven:alpine
+    commands:
+      - mvn --batch-mode clean install
   deploy_war:
     image: athieriot/drone-artifactory:latest
-    url: http://54.169.222.113:8081/artifactory/Hello/
-    username: admin
-    password: password
+    url: http://54.169.222.113:8081/artifactory/anindita/
     pom: pom.xml
-    repo_key: Hello
+    repo_key: anindita
     files:
-      - target/BasicApp-0.0.1-SNAPSHOT.war
+      - target/*.war
     when:
       branch: master
