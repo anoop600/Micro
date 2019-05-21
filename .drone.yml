@@ -5,7 +5,7 @@ pipeline:
       - mvn --batch-mode clean install
   deploy_war:
     image: athieriot/drone-artifactory:latest
-    url: http://54.169.222.113:8081/artifactory/anindita/
+    url: http://54.169.222.113:8081
     pom: pom.xml
     repo_key: anindita
     files:
