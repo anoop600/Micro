@@ -2,7 +2,8 @@ kind: pipeline
 name: default
 pipeline:
   artifactory:
-    image: scandio/jfrog-artifactory
+    image: meisterplan/jfrog-cli
+
 
 
   
