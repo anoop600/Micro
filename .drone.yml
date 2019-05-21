@@ -1,8 +1,8 @@
 kind: pipeline
 name: default
 pipeline:
-  artifactory:
-    image: plugins/drone-artifactory
+  deploy_war:
+    image: athieriot/drone-artifactory:latest
     url: http://54.169.222.113:8081/artifactory/Hello/
     username: admin
     password: password
