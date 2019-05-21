@@ -7,7 +7,7 @@ pipeline:
     username: admin
     password: password
     pom: pom.xml
-    repo_key: Hello/
+    repo_key: Hello
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
     force_upload: true
