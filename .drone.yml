@@ -11,11 +11,3 @@ pipeline:
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
     force_upload: true
-      
-
-
-
-  
-    
-    
-      
