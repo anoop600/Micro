@@ -1,19 +1,6 @@
 kind: pipeline
 name: default
-steps:
-- name: artifactory
-  image: athieriot/drone-artifactory
-  settings:
-    url:
-      from_secret: artifactory_url
-    username:
-      from_secret: artifactory_username
-    password:
-      from_secret: artifactory_password
-  pom: pom.xml
-  files:
-    - target/BasicApp-0.0.1-SNAPSHOT.war
-      
+
   
     
     
