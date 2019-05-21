@@ -13,15 +13,14 @@ steps:
     sonar_token:
       from_secret: sonar_token
 - name: deploy_war 
-  image: jmccann/drone-artifactory
-  settings:
-    url: http://54.169.222.113:8081
-    username: admin
-    password:
-      from_secret: artifactory_password
-    pom: pom.xml
-    repo_key:
-      from_secret: repository_key
-    files:
-      - target/*.war
-      
+  image: maven
+  secrets: [ ARTIFACTORY_PASSWORD, ARTIFACTORY_USER, ARTIFACTORY_URL, REPOSITORY_KEY ]
+  commands:
+    - curl -fL https://getcli.jfrog.io | sh
+    - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASSWORD
+    - ./jfrog rt c show
+    - export M2_HOME=/usr/share/maven
+    - sed -i 's,REPOSITORY_KEY,'"$REPOSITORY_KEY"',g' configuration.yml
+    - ./jfrog rt mvn "clean install" configuration.yml --build-name=Drone_Maven_demo --build-number=1.1.0
+    - ./jfrog rt bce Drone_Maven_demo 1.1.0
+    - ./jfrog rt bp Drone_Maven_demo 1.1.0
