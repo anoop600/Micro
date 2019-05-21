@@ -1,14 +1,19 @@
-pipeline:
-  build_war:
-    image: maven:alpine
-    commands:
-      - mvn --batch-mode clean install
-  deploy_war:
-    image: athieriot/drone-artifactory:latest
+kind: pipeline
+name: default
+steps:
+- name: build_war
+  image: maven:alpine
+  commands:
+  - mvn --batch-mode clean install
+- name: deploy_war 
+  image: athieriot/drone-artifactory:latest
+  settings:
     url: http://54.169.222.113:8081
+    username: admin
+    password:
+      from_secret: artifactory_password
     pom: pom.xml
-    repo_key: anindita
+    repo_key:
+      from_secret: repository_key
     files:
       - target/*.war
-    when:
-      branch: master
