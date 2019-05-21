@@ -3,10 +3,10 @@ name: default
 pipeline:
   artifactory:
     image: athieriot/drone-artifactory
-    url: http://54.169.222.113:8081
-    username: admin_name
-    password: admin_password
-    repo: Hello
+    url: http://54.169.222.113:8081/artifactory/webapp/#/artifacts/browse/tree/General/Hello
+    username: admin
+    password: password
+    repo_key: Hello
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
       
