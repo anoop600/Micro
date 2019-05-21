@@ -12,7 +12,7 @@ steps:
       from_secret: artifactory_password
   pom: pom.xml
   files:
-    - target/
+    - target/BasicApp-0.0.1-SNAPSHOT.war
       
   
     
