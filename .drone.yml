@@ -7,7 +7,15 @@ steps:
   - mvn --batch-mode clean install
 - name: deploy_war 
   image: maven
-  secrets: [ ARTIFACTORY_PASSWORD, ARTIFACTORY_USER, ARTIFACTORY_URL, REPOSITORY_KEY ]
+  settings:
+    url:
+      from_secret: ARTIFACTORY_URL
+    username:
+      from_secret: ARTIFACTORY_USER
+    password:
+      from_secret: ARTIFACTORY_PASSWORD
+    repo_key:
+      from_secret: REPOSITORY_KEY
   commands:
     - curl -fL https://getcli.jfrog.io | sh
     - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASSWORD
