@@ -5,13 +5,6 @@ steps:
   image: maven:alpine
   commands:
   - mvn --batch-mode clean install
-- name: code-analysis
-  image: aosapps/drone-sonar-plugin
-  settings:
-    sonar_host:
-      from_secret: sonar_host
-    sonar_token:
-      from_secret: sonar_token
 - name: deploy_war 
   image: maven
   secrets: [ ARTIFACTORY_PASSWORD, ARTIFACTORY_USER, ARTIFACTORY_URL, REPOSITORY_KEY ]
