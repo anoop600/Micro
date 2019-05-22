@@ -10,10 +10,6 @@ steps:
   settings:
     url:
       from_secret: ARTIFACTORY_URL
-    username:
-      from_secret: ARTIFACTORY_USER
-    password:
-      from_secret: ARTIFACTORY_PASSWORD
     repo_key:
       from_secret: REPOSITORY_KEY
   commands:
