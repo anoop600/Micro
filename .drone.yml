@@ -26,9 +26,3 @@ steps:
   commands:
     - curl -fL https://getcli.jfrog.io | sh
     - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASSWORD
-    - ./jfrog rt c show
-    - export M2_HOME=/usr/share/maven
-    - sed -i 's,REPOSITORY_KEY,'"$REPOSITORY_KEY"',g' configuration.yml
-    - ./jfrog rt mvn "clean install" configuration.yml --build-name=Drone_Maven_demo --build-number=1.1.0
-    - ./jfrog rt bce Drone_Maven_demo 1.1.0
-    - ./jfrog rt bp Drone_Maven_demo 1.1.0
