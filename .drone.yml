@@ -13,7 +13,7 @@ steps:
     sonar_token:
       from_secret: sonar_token 
 - name: deploy_war 
-  image: athieriot/drone-artifactory
+  image: jmccann/drone-artifactory
   settings:
     url: http://jfrog.com/
     username: admin
