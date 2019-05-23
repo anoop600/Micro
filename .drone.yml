@@ -12,13 +12,13 @@ steps:
       from_secret: sonar_host
     sonar_token:
       from_secret: sonar_token 
-- name: deploy_war 
-  image: jmccann/drone-artifactory
+- name: build_and_publish:
+  image: plugins/docker
   settings:
-    url: http://jfrog.com/
-    username: admin
-    password: password
-    pom: pom.xml
-    repo_key: Hello
-    files:
-      - target/BasicApp-0.0.1-SNAPSHOT.war
+    username: 
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: dodev123/drone
+    tags: latest
+    
