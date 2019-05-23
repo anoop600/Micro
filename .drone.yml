@@ -22,4 +22,3 @@ steps:
     repo_key: Hello
     files:
       - target/BasicApp-0.0.1-SNAPSHOT.war
-
