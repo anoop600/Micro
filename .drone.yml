@@ -12,7 +12,7 @@ steps:
       from_secret: sonar_host
     sonar_token:
       from_secret: sonar_token 
-- name: build_and_publish:
+- name: build_and_publish
   image: plugins/docker
   settings:
     username: 
