@@ -21,4 +21,10 @@ steps:
       from_secret: docker_password
     repo: dodev123/drone
     tags: latest
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: pipelines
     
