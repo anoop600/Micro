@@ -21,6 +21,18 @@ steps:
       from_secret: docker_password
     repo: dodev123/drone
     tags: latest
+- name: elastic_bean_stalk
+  image: peloton/drone-elastic-beanstalk
+  access_key:
+    from_secret: access_key
+  secret_key:
+    from_secret: secret_key
+  region: eu-west-1
+  version_label: v1
+  description: Deployed with DroneCI
+  auto_create: true
+  bucket_name:
+    from_secret: bucket_name
 - name: slack
   image: plugins/slack
   settings:
