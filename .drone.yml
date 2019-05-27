@@ -31,8 +31,6 @@ steps:
   version_label: v1
   description: Deployed with DroneCI
   auto_create: true
-  bucket_name:
-    from_secret: bucket_name
 - name: slack
   image: plugins/slack
   settings:
