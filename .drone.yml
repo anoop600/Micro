@@ -9,7 +9,7 @@ steps:
   image: aosapps/drone-sonar-plugin
   settings:
     sonar_host:
-      from_secret: sonar_host
+      from_secret: sonar_hos
     sonar_token:
       from_secret: sonar_token 
 - name: build_and_publish
