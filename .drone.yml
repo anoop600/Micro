@@ -4,12 +4,12 @@ steps:
 - name: build_war
   image: maven:alpine
   commands:
-  - mvn --batch-mode clean install
+  - mvn clean install
 - name: code-analysis
   image: aosapps/drone-sonar-plugin
   settings:
     sonar_host:
-      from_secret: sonar_hos
+      from_secret: sonar_host
     sonar_token:
       from_secret: sonar_token 
 - name: build_and_publish
@@ -37,4 +37,5 @@ steps:
       {{else}}
         build {{build.number}} failed. Fix me please.
       {{/success}}
-    
+  when:
+    status: [ success, failure ]  
