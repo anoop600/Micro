@@ -4,7 +4,7 @@ steps:
 - name: build_war
   image: maven:alpine
   commands:
-  - mvnn clean install
+  - mvn clean install
 - name: code-analysis
   image: aosapps/drone-sonar-plugin
   settings:
