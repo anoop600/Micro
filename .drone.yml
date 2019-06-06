@@ -23,6 +23,8 @@ steps:
     tags: latest
 - name: deploy_to_kubernetes
   image: anoop600/updatedkubectl:3
+  volumes:
+  - ~/.kube/:~/.kube/
   commands:
   - kubectl get nodes
 - name: slack
