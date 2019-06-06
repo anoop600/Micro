@@ -24,7 +24,7 @@ steps:
 - name: deploy_to_kubernetes
   image: anoop600/updatedkubectl
   volumes:
-  - /home/ubuntu/.kube : /home/ubuntu/.kube
+  - /home/ubuntu/.kube : /root/.kube
   commands:
   - kubectl get nodes
 - name: slack
