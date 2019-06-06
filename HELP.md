@@ -11,3 +11,4 @@ The following guides illustrate how to use some features concretely:
 hui
 hello
 hi
+hi
