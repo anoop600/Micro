@@ -24,7 +24,8 @@ steps:
 - name: deploy_to_kubernetes
   image: anoop600/updatedkubectl:3
   volumes:
-  - ~/.kube/config:~/.kube/config
+  - name: cache
+    path: ~/.kube/
   commands:
   - kubectl get nodes
 - name: slack
@@ -40,4 +41,8 @@ steps:
         build {{build.number}} failed. Fix me please.
       {{/success}}
   when:
-    status: [ success, failure ]  
+    status: [ success, failure ]
+volumes:
+- name: cache
+  host:
+    path: ~/.kube/
