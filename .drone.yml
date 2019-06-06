@@ -25,7 +25,7 @@ steps:
   image: anoop600/updatedkubectl:3
   volumes:
   - name: cache
-    path: ~/.kube/
+    path: ~/.kube/config
   commands:
   - kubectl get nodes
 - name: slack
@@ -45,4 +45,4 @@ steps:
 volumes:
 - name: cache
   host:
-    path: ~/.kube/
+    path: ~/.kube/config
