@@ -22,7 +22,7 @@ steps:
     repo: dodev123/drone
     tags: latest
 - name: deploy_to_kubernetes
-  image: anoop600/updatedkubectl
+  image: anoop600/updatedkubectl:4
   volumes:
   - /home/ubuntu/.kube : /root/.kube
   commands:
