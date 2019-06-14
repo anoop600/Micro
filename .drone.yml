@@ -32,7 +32,7 @@ steps:
   settings:
     webhook:
       from_secret: slack_webhook
-    channel: pipelines
+    channel: devops-alerts
     template: >
       {{#success build.status}}
         build {{build.number}} succeeded. Good job.
